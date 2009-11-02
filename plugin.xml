@@ -1,0 +1,21 @@
+<plugin name='cloud-foundry' version='0.1' grailsVersion='1.1 &gt; *'>
+  <author>Graeme Rocher</author>
+  <authorEmail>graeme.rocher@springsource.com</authorEmail>
+  <title>Cloud Foundry Plugin for Grails</title>
+  <description>\
+Integrates Grails with Cloud Foundry, SpringSource's cloud hosting environment
+</description>
+  <documentation>http://grails.org/plugin/cloud-foundry</documentation>
+  <resources>
+    <resource>BootStrap</resource>
+    <resource>CloudFoundry</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>spring.resources</resource>
+  </resources>
+  <dependencies>
+    <resolvers />
+  </dependencies>
+  <behavior />
+</plugin>
