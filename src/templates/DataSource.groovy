@@ -26,9 +26,9 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-            username = "@appName@-user"
-            password = "@appName@-pass"
-            url = "jdbc:mysql://dbmaster/@appName@"
+            username = "ralph-grails-user"
+            password = "ralph-grails-pass"
+            url = "jdbc:mysql://dbmaster/ralph-grails"
 		}
 	}
 }

@@ -30,7 +30,7 @@ target(parseCloudFoundrySettings:"Parses CloudFoundry settings") {
     }
     cloudFoundryConf = buildConfig
     dataSourceConf = configSlurper.parse(new File("${basedir}/grails-app/conf/DataSource.groovy").toURL())
-    
+
     final String username = cloudFoundryConf.cloudFoundry.username ?: ""
     final String password = cloudFoundryConf.cloudFoundry.password ?: ""
 
@@ -67,7 +67,7 @@ target(listDeployments:"Lists all known deployments") {
 
     println "No Cloud Foundry deployments found"
     if(error)
-      println "An error occured: ${error}"  
+      println "An error occured: ${error}"
   }
 }
 
@@ -79,7 +79,7 @@ target(listApplications:"Lists all known applications") {
 
   CloudFoundryClient client = cloudFoundryClient
   def (applications, error) = getApplications(client)
-  
+
   println()
   if(applications) {
     println "Cloud Foundry Applications"
@@ -438,7 +438,7 @@ private OperationResponseWithId uploadApplicationInternal(CloudFoundryClient cli
     appInfo.schemaName = cloudFoundryConf?.cloudFoundry?.db?.schemaName ?: app
     appInfo.dbUserId = dataSourceConf?.dataSource?.username ?: "root"
     appInfo.dbPassword = dataSourceConf?.dataSource?.password ?: ""
-    appInfo.webappContext = app
+    appInfo.webappContext = cloudFoundryConf?.cloudFoundry?.webappContext ?: app
     appInfo.region = getConfiguredRegion()
     appInfo.warFile = warFile
 
@@ -457,7 +457,7 @@ private OperationResponseWithId uploadApplicationInternal(CloudFoundryClient cli
         sleepCount+=2000
         sleep 2000
         print "${Math.round(sleepCount/1000)}s.."
-      }      
+      }
       println("Done.")
       println "Uploaded application $app with id: $response.id"
       return response
@@ -524,7 +524,7 @@ private calculateWarFileName(String appName, String appVersion) {
   return new File(warName)
 }
 
-private handleError(Throwable e) {  
+private handleError(Throwable e) {
   if(argsMap.debug) {
     e.printStackTrace()
     println e.message
